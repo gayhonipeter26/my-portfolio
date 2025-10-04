@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nderu Gathoni — Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --accent-red: #dc143c;
+        --black: #000;
+        --white: #fff;
+        --gray-light: #e0e0e0;
+        --gray-dark: #2a2a2a;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background-color: var(--black);
+        color: var(--white);
+        overflow-x: hidden;
+      }
+
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      * {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* Navbar */
+      .navbar {
+        background-color: var(--black);
+        border-bottom: 2px solid var(--accent-red);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--white) !important;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: var(--gray-light) !important;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--accent-red) !important;
+      }
+
+      .navbar-toggler {
+        border-color: var(--accent-red);
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(220, 20, 60, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      /* Hero */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--black) 0%,
+          var(--gray-dark) 100%
+        );
+        padding: 5rem 0;
+        border-bottom: 3px solid var(--accent-red);
+      }
+
+      .hero h1 {
+        color: var(--white);
+        font-weight: 700;
+      }
+
+      .hero .text-primary {
+        color: var(--accent-red) !important;
+      }
+
+      .hero .lead {
+        color: var(--gray-light);
+      }
+
+      .hero img {
+        border: 4px solid var(--accent-red);
+        border-radius: 15px;
+      }
+
+      .btn-primary {
+        background-color: var(--accent-red);
+        border-color: var(--accent-red);
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      .btn-primary:hover {
+        background-color: #b01030;
+        border-color: #b01030;
+      }
+
+      .btn-outline-secondary {
+        border-color: var(--white);
+        color: var(--white);
+        font-weight: 600;
+      }
+
+      .btn-outline-secondary:hover {
+        background-color: var(--white);
+        color: var(--black);
+      }
+
+      .hero .list-inline-item {
+        color: var(--gray-light);
+      }
+
+      .hero .list-inline-item a {
+        color: var(--accent-red);
+        text-decoration: none;
+      }
+
+      .hero .list-inline-item a:hover {
+        color: var(--white);
+        text-decoration: underline;
+      }
+
+      /* Main Content */
+      main {
+        background-color: var(--black);
+      }
+
+      /* Projects */
+      #projects h2 {
+        color: var(--white);
+      }
+
+      .text-muted {
+        color: var(--gray-light) !important;
+      }
+
+      .project-card {
+        background-color: var(--gray-dark);
+        border: 2px solid var(--accent-red);
+        transition: transform 0.3s, box-shadow 0.3s;
+        overflow: hidden;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(220, 20, 60, 0.4);
+      }
+
+      .project-card img {
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 2px solid var(--accent-red);
+      }
+
+      .project-card .card-body {
+        background-color: var(--gray-dark);
+        color: var(--white);
+      }
+
+      .project-card .card-title {
+        color: var(--accent-red);
+      }
+
+      .project-card .card-text {
+        color: var(--gray-light);
+      }
+
+      .project-card .card-footer {
+        background-color: var(--black);
+        color: var(--gray-light);
+        border-top: 1px solid var(--accent-red);
+      }
+
+      .btn-sm.btn-primary {
+        background-color: var(--accent-red);
+        border-color: var(--accent-red);
+      }
+
+      .btn-sm.btn-outline-secondary {
+        border-color: var(--accent-red);
+        color: var(--accent-red);
+      }
+
+      .btn-sm.btn-outline-secondary:hover {
+        background-color: var(--accent-red);
+        color: var(--white);
+      }
+
+      /* About */
+      #about h3 {
+        color: var(--accent-red);
+      }
+
+      #about p,
+      #about ul {
+        color: var(--gray-light);
+      }
+
+      #about ul li {
+        margin-bottom: 0.5rem;
+      }
+
+      #about .border {
+        background-color: var(--gray-dark) !important;
+        border: 2px solid var(--accent-red) !important;
+        color: var(--white);
+      }
+
+      #about .border strong {
+        color: var(--accent-red);
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      #about .border a {
+        color: var(--white);
+        text-decoration: none;
+      }
+
+      #about .border a:hover {
+        color: var(--accent-red);
+        text-decoration: underline;
+      }
+
+      /* Connect */
+      #connect {
+        background-color: var(--accent-red) !important;
+        border: 3px solid var(--white);
+      }
+
+      #connect h2 {
+        color: var(--white);
+      }
+
+      #connect p {
+        color: var(--white);
+      }
+
+      .social-icons a {
+        color: var(--black);
+        font-size: 2rem;
+        margin: 0 1rem;
+        transition: 0.3s;
+        display: inline-block;
+      }
+
+      .social-icons a:hover {
+        color: var(--white);
+        transform: scale(1.2);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--black);
+        color: var(--gray-light);
+        padding: 2rem 0;
+        border-top: 3px solid var(--accent-red);
+      }
+
+      footer .social-icons a {
+        color: var(--gray-light);
+        font-size: 1.4rem;
+        margin-right: 1rem;
+      }
+
+      footer .social-icons a:hover {
+        color: var(--accent-red);
+      }
+
+      /* Responsive */
+      @media (min-width: 992px) {
+        .hero {
+          padding: 7rem 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .social-icons a {
+          font-size: 1.5rem;
+          margin: 0 0.5rem;
+        }
+
+        .project-card img {
+          height: 200px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .hero {
+          padding: 3rem 0;
+        }
+
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+
+        .hero .lead {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Nderu Gathoni</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-controls="nav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto gap-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#connect">Connect</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero text-center text-lg-start">
+      <div class="container">
+        <div class="row align-items-center gy-4">
+          <div class="col-lg-7">
+            <h1 class="display-5 fw-bold">
+              Hi, I'm <span class="text-primary">Nderu Gathoni</span>
+            </h1>
+            <p class="lead">
+              Software Engineer & Photographer dedicated to crafting elegant
+              software and visual experiences that inspire innovation and
+              growth.
+            </p>
+            <div class="d-flex gap-2 flex-wrap">
+              <a class="btn btn-primary" href="#projects">View Projects</a>
+              <a class="btn btn-outline-secondary" href="#connect"
+                >Let's Connect</a
+              >
+            </div>
+            <ul class="list-inline mt-3 small">
+              <li class="list-inline-item">📍 Nairobi, Kenya</li>
+              <li class="list-inline-item">·</li>
+              <li class="list-inline-item">
+                📧
+                <a href="mailto:nderugathoni26@gmail.com"
+                  >nderugathoni26@gmail.com</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-5 text-center">
+            <img
+              src="ndesh.JPG"
+              alt="Nderu Gathoni"
+              class="img-fluid rounded-3 shadow-sm"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="py-5">
+      <div class="container">
+        <!-- PROJECTS -->
+        <section id="projects" class="mb-5">
+          <div
+            class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+          >
+            <h2 class="h4 mb-0 fw-bold">Featured Projects</h2>
+            <div class="small text-muted">Click to view live demos or code</div>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-sm-6 col-lg-4">
+              <div class="card project-card h-100">
+                <img
+                  src="Pos.png"
+                  class="card-img-top"
+                  alt="POS System"
+                />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">Retail POS System</h5>
+                  <p class="card-text small">
+                    A retail & wholesale POS system with stock management,
+                    receipt generation, and profit tracking.
+                  </p>
+                  <div class="mt-auto d-flex gap-2">
+                    <a class="btn btn-sm btn-primary" href="#"
+                      >Live Demo</a
+                    >
+                    <a
+                      class="btn btn-sm btn-outline-secondary"
+                      href="https://github.com/nderugathoni26/POINT-OF-SALE-SYSTEM-"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+                <div class="card-footer small">Tech: PHP, MySQL, Bootstrap</div>
+              </div>
+            </div>
+
+        
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card project-card h-100">
+                <img
+                  src="school.png"
+                  class="card-img-top"
+                  alt="Student Enquiry System"
+                />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">Student Enquiry Platform</h5>
+                  <p class="card-text small">
+                    A platform where students can send and track enquiries with
+                    professors in real-time.
+                  </p>
+                  <div class="mt-auto d-flex gap-2">
+                    <a class="btn btn-sm btn-primary" href="https://student-enquiry-system.vercel.app/">Live Demo</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="https://github.com/nderugathoni26/student-enquiry-system"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+                <div class="card-footer small">Tech: PHP, MySQL, HTML/CSS</div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+              <div class="card project-card h-100">
+                <img
+                  src="Business.png"
+                  class="card-img-top"
+                  alt="Canteen Preorder System"
+                />
+                <div class="card-body d-flex flex-column">
+                  <h5 class="card-title fw-bold">Business Portfolio Website</h5>
+                  <p class="card-text small">
+                    A professional portfolio website showcasing my software
+                    consultancy and services with responsive design
+                    and live project previews.
+                  </p>
+                  <div class="mt-auto d-flex gap-2">
+                    <a
+                      class="btn btn-sm btn-primary"
+                      href="https://nderu-ke.vercel.app/"
+                      >Live Demo</a
+                    >
+                    <a
+                      class="btn btn-sm btn-outline-secondary"
+                      href="https://github.com/gayhonipeter26/Nderu-ke"
+                      >Code</a
+                    >
+                  </div>
+                </div>
+                <div class="card-footer small">Tech: Laravel, Vue.js</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="mb-5">
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-8">
+              <h3 class="fw-bold mb-3">About Me</h3>
+              <p>
+                I'm a software engineer passionate about creating impactful
+                systems and user experiences. I specialize in building reliable,
+                efficient, and scalable applications for businesses and
+                institutions.
+              </p>
+              <ul>
+                <li>
+                  Skills: PHP, Laravel, MySQL, JavaScript, Vue, React, Bootstrap
+                </li>
+                <li>
+                  Also a professional photographer focused on visual
+                  storytelling.
+                </li>
+              </ul>
+            </div>
+            <div class="col-lg-4">
+              <div class="p-3 border rounded-3 shadow-sm">
+                <strong>Quick Info</strong>
+                <p class="mb-1 small">
+                  Email:
+                  <a href="mailto:nderugathoni26@gmail.com"
+                    >nderugathoni26@gmail.com</a
+                  >
+                </p>
+                <p class="mb-0 small">Location: Nairobi, Kenya</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CONNECT -->
+        <section id="connect" class="text-center py-5 rounded-3">
+          <div class="container">
+            <h2 class="fw-bold mb-3">Let's Connect</h2>
+            <p class="mb-4">
+              Follow or reach out through my social platforms below.
+            </p>
+            <div class="social-icons">
+              <a href="https://github.com/gayhonipeter26/" title="GitHub"
+                ><i class="bi bi-github"></i
+              ></a>
+              <a
+                href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
+                title="WhatsApp"
+              >
+                <i class="bi bi-whatsapp"></i>
+              </a>
+
+              <a href="#"title="Facebook"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="#" title="LinkedIn"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div
+        class="container d-flex flex-column flex-md-row justify-content-between align-items-center"
+      >
+        <div>© <span id="year"></span> Nderu Gathoni — All Rights Reserved</div>
+        <div class="social-icons mt-3 mt-md-0">
+          <a href="https://github.com/gayhonipeter26" title="GitHub"
+            ><i class="bi bi-github"></i
+          ></a>
+          <a href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
