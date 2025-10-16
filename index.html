@@ -38,10 +38,12 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
       }
+
       /* Navbar */
       .navbar {
-        background-color: var(--black);
+        background-color: rgba(0, 0, 0, 0.95);
         border-bottom: 2px solid var(--accent-red);
+        backdrop-filter: blur(10px);
       }
 
       .navbar-brand {
@@ -54,10 +56,27 @@
         color: var(--gray-light) !important;
         font-weight: 500;
         transition: color 0.3s;
+        position: relative;
       }
 
       .nav-link:hover {
         color: var(--accent-red) !important;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent-red);
+        transition: width 0.3s, left 0.3s;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+        left: 0;
       }
 
       .navbar-toggler {
@@ -77,6 +96,19 @@
         );
         padding: 5rem 0;
         border-bottom: 3px solid var(--accent-red);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 20% 50%, rgba(220, 20, 60, 0.1) 0%, transparent 50%);
+        pointer-events: none;
       }
 
       .hero h1 {
@@ -95,6 +127,11 @@
       .hero img {
         border: 4px solid var(--accent-red);
         border-radius: 15px;
+        transition: transform 0.3s;
+      }
+
+      .hero img:hover {
+        transform: scale(1.05);
       }
 
       .btn-primary {
@@ -102,22 +139,27 @@
         border-color: var(--accent-red);
         color: var(--white);
         font-weight: 600;
+        transition: all 0.3s;
       }
 
       .btn-primary:hover {
         background-color: #b01030;
         border-color: #b01030;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4);
       }
 
       .btn-outline-secondary {
         border-color: var(--white);
         color: var(--white);
         font-weight: 600;
+        transition: all 0.3s;
       }
 
       .btn-outline-secondary:hover {
         background-color: var(--white);
         color: var(--black);
+        transform: translateY(-2px);
       }
 
       .hero .list-inline-item {
@@ -127,16 +169,187 @@
       .hero .list-inline-item a {
         color: var(--accent-red);
         text-decoration: none;
+        transition: color 0.3s;
       }
 
       .hero .list-inline-item a:hover {
         color: var(--white);
-        text-decoration: underline;
       }
 
       /* Main Content */
       main {
         background-color: var(--black);
+      }
+
+      /* Section Headers */
+      .section-header {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 3rem;
+      }
+
+      .section-header h2 {
+        color: var(--white);
+        font-weight: 700;
+        font-size: 2.5rem;
+      }
+
+      .section-header::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: var(--accent-red);
+      }
+
+      /* Skills Section */
+      #skills {
+        padding: 4rem 0;
+      }
+
+      .skill-category {
+        background: linear-gradient(135deg, var(--gray-dark) 0%, #1a1a1a 100%);
+        border: 2px solid var(--accent-red);
+        border-radius: 20px;
+        padding: 2.5rem;
+        height: 100%;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .skill-category::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(220, 20, 60, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+
+      .skill-category:hover::before {
+        opacity: 1;
+      }
+
+      .skill-category:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(220, 20, 60, 0.4),
+                    0 0 30px rgba(220, 20, 60, 0.2);
+        border-color: #ff1744;
+      }
+
+      .skill-category h4 {
+        color: var(--accent-red);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .skill-category h4 i {
+        font-size: 1.5rem;
+      }
+
+      .skill-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--black) 0%, var(--gray-dark) 100%);
+        color: var(--gray-light);
+        padding: 0.8rem;
+        margin: 0.5rem;
+        border-radius: 50%;
+        border: 3px solid var(--accent-red);
+        font-size: 1.8rem;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        width: 65px;
+        height: 65px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .skill-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.4), transparent);
+        transition: left 0.5s;
+      }
+
+      .skill-badge:hover::before {
+        left: 100%;
+      }
+
+      .skill-badge::after {
+        content: '';
+        position: absolute;
+        inset: -3px;
+        border-radius: 50%;
+        padding: 3px;
+        background: linear-gradient(45deg, var(--accent-red), #ff1744, var(--accent-red));
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.4s;
+      }
+
+      .skill-badge:hover::after {
+        opacity: 1;
+        animation: rotate 2s linear infinite;
+      }
+
+      .skill-badge:hover {
+        background: linear-gradient(135deg, var(--accent-red) 0%, #ff1744 100%);
+        color: var(--white);
+        transform: scale(1.2) translateY(-5px);
+        box-shadow: 0 10px 30px rgba(220, 20, 60, 0.6),
+                    0 0 20px rgba(220, 20, 60, 0.4),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        border-color: #fff;
+      }
+
+      .skill-badge i {
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .skills-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
       }
 
       /* Projects */
@@ -153,6 +366,7 @@
         border: 2px solid var(--accent-red);
         transition: transform 0.3s, box-shadow 0.3s;
         overflow: hidden;
+        height: 100%;
       }
 
       .project-card:hover {
@@ -161,9 +375,14 @@
       }
 
       .project-card img {
-        height: 180px;
+        height: 200px;
         object-fit: cover;
         border-bottom: 2px solid var(--accent-red);
+        transition: transform 0.3s;
+      }
+
+      .project-card:hover img {
+        transform: scale(1.1);
       }
 
       .project-card .card-body {
@@ -208,6 +427,7 @@
       #about p,
       #about ul {
         color: var(--gray-light);
+        line-height: 1.8;
       }
 
       #about ul li {
@@ -233,12 +453,11 @@
 
       #about .border a:hover {
         color: var(--accent-red);
-        text-decoration: underline;
       }
 
       /* Connect */
       #connect {
-        background-color: var(--accent-red) !important;
+        background: linear-gradient(135deg, var(--accent-red) 0%, #b01030 100%);
         border: 3px solid var(--white);
       }
 
@@ -254,13 +473,13 @@
         color: var(--black);
         font-size: 2rem;
         margin: 0 1rem;
-        transition: 0.3s;
+        transition: all 0.3s;
         display: inline-block;
       }
 
       .social-icons a:hover {
         color: var(--white);
-        transform: scale(1.2);
+        transform: scale(1.2) rotate(5deg);
       }
 
       /* Footer */
@@ -281,6 +500,126 @@
         color: var(--accent-red);
       }
 
+      /* Skill Modal */
+      .skill-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+        animation: fadeIn 0.3s ease;
+      }
+
+      .skill-modal.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .skill-modal-content {
+        background: linear-gradient(135deg, var(--gray-dark) 0%, #1a1a1a 100%);
+        border: 3px solid var(--accent-red);
+        border-radius: 20px;
+        padding: 2.5rem;
+        max-width: 500px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(220, 20, 60, 0.5),
+                    0 0 40px rgba(220, 20, 60, 0.3);
+        animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .skill-modal-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-red);
+      }
+
+      .skill-modal-icon {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, var(--accent-red) 0%, #ff1744 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: var(--white);
+        box-shadow: 0 5px 20px rgba(220, 20, 60, 0.5);
+      }
+
+      .skill-modal-title {
+        flex: 1;
+      }
+
+      .skill-modal-title h3 {
+        color: var(--white);
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .skill-modal-body {
+        color: var(--gray-light);
+        line-height: 1.8;
+        font-size: 1.1rem;
+      }
+
+      .skill-modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        background: var(--black);
+        border: 2px solid var(--accent-red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--gray-light);
+        font-size: 1.5rem;
+      }
+
+      .skill-modal-close:hover {
+        background: var(--accent-red);
+        color: var(--white);
+        transform: rotate(90deg);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .skill-badge {
+        cursor: pointer;
+      }
+
       /* Responsive */
       @media (min-width: 992px) {
         .hero {
@@ -299,7 +638,11 @@
         }
 
         .project-card img {
-          height: 200px;
+          height: 180px;
+        }
+
+        .section-header h2 {
+          font-size: 2rem;
         }
       }
 
@@ -315,6 +658,10 @@
         .hero .lead {
           font-size: 1rem;
         }
+
+        .skill-category {
+          padding: 1.5rem;
+        }
       }
     </style>
     </head>
@@ -322,7 +669,7 @@
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-lg sticky-top">
             <div class="container">
-                <a class="navbar-brand fw-bold" href="#">Nderu Gathoni</a>
+                <a class="navbar-brand fw-bold" href="index.html">Nderu Gathoni</a>
                 <button
                     class="navbar-toggler"
                     type="button"
@@ -337,10 +684,13 @@
                 <div class="collapse navbar-collapse" id="nav">
                     <ul class="navbar-nav ms-auto gap-2">
                         <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#projects">Projects</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="#skills">Skills</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#connect">Connect</a>
@@ -356,29 +706,21 @@
                 <div class="row align-items-center gy-4">
                     <div class="col-lg-7">
                         <h1 class="display-5 fw-bold">
-                            Hi, I'm <span class="text-primary">Nderu
-                                Gathoni</span>
+                            Hi, I'm <span class="text-primary">Nderu Gathoni</span>
                         </h1>
                         <p class="lead">
-                            Software Engineer & Photographer dedicated to
-                            crafting elegant
-                            software and visual experiences that inspire
-                            innovation and
-                            growth.
+                            Software Engineer & Photographer dedicated to crafting elegant
+                            software and visual experiences that inspire innovation and growth.
                         </p>
                         <div class="d-flex gap-2 flex-wrap">
-                            <a class="btn btn-primary" href="#projects">View
-                                Projects</a>
-                            <a class="btn btn-outline-secondary"
-                                href="#connect">Let's Connect</a>
+                            <a class="btn btn-primary" href="#projects">View Projects</a>
+                            <a class="btn btn-outline-secondary" href="#connect">Let's Connect</a>
                         </div>
                         <ul class="list-inline mt-3 small">
                             <li class="list-inline-item">📍 Nairobi, Kenya</li>
                             <li class="list-inline-item">·</li>
                             <li class="list-inline-item">
-                                📧
-                                <a
-                                    href="mailto:nderugathoni26@gmail.com">nderugathoni26@gmail.com</a>
+                                📧 <a href="mailto:nderugathoni26@gmail.com">nderugathoni26@gmail.com</a>
                             </li>
                         </ul>
                     </div>
@@ -395,204 +737,314 @@
         <!-- MAIN -->
         <main class="py-5">
             <div class="container">
+                <!-- ABOUT -->
+                <section id="about" class="mb-5">
+                    <div class="section-header">
+                        <h2>About Me</h2>
+                    </div>
+                    <div class="row g-4 align-items-center">
+                        <div class="col-lg-8">
+                            <p>
+                                I'm a software engineer passionate about creating impactful
+                                systems and user experiences. I specialize in building reliable,
+                                efficient, and scalable applications for businesses and
+                                institutions.
+                            </p>
+                            <p>
+                                With expertise spanning both backend and frontend technologies, I bring ideas to life through clean code and thoughtful design. Beyond software development, I'm also a professional photographer focused on visual storytelling, which enhances my approach to creating visually engaging user interfaces.
+                            </p>
+                            <p>
+                                I'm committed to continuous learning and staying current with emerging technologies to deliver cutting-edge solutions that drive business growth and user satisfaction.
+                            </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="p-3 border rounded-3 shadow-sm">
+                                <strong>Quick Info</strong>
+                                <p class="mb-1 small">
+                                    Email: <a href="mailto:nderugathoni26@gmail.com">nderugathoni26@gmail.com</a>
+                                </p>
+                                <p class="mb-1 small">Location: Nairobi, Kenya</p>
+                                <p class="mb-0 small">Available for: Freelance & Full-time</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- PROJECTS -->
                 <section id="projects" class="mb-5">
-                    <div
-                        class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
-                        <h2 class="h4 mb-0 fw-bold">Featured Projects</h2>
-                        <div class="small text-muted">Click to view live demos
-                            or code</div>
+                    <div class="section-header">
+                        <h2>Featured Projects</h2>
                     </div>
 
                     <div class="row g-4">
                         <div class="col-sm-6 col-lg-4">
-                            <div class="card project-card h-100">
-                                <img
-                                    src="Pos.png"
-                                    class="card-img-top"
-                                    alt="POS System" />
+                            <div class="card project-card">
+                                <img src="Pos.png" class="card-img-top" alt="POS System" />
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">Retail POS
-                                        System</h5>
+                                    <h5 class="card-title fw-bold">Retail POS System</h5>
                                     <p class="card-text small">
-                                        A retail & wholesale POS system with
-                                        stock management,
+                                        A retail & wholesale POS system with stock management,
                                         receipt generation, and profit tracking.
                                     </p>
                                     <div class="mt-auto d-flex gap-2">
-                                        <a class="btn btn-sm btn-primary"
-                                            href="#">Live Demo</a>
-                                        <a
-                                            class="btn btn-sm btn-outline-secondary"
-                                            href="https://github.com/nderugathoni26/POINT-OF-SALE-SYSTEM-">Code</a>
+                                        <a class="btn btn-sm btn-primary" href="#">Live Demo</a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="https://github.com/nderugathoni26/POINT-OF-SALE-SYSTEM-">Code</a>
                                     </div>
                                 </div>
-                                <div class="card-footer small">Tech: PHP, MySQL,
-                                    Bootstrap</div>
+                                <div class="card-footer small">Tech: PHP, MySQL, Bootstrap</div>
                             </div>
                         </div>
 
                         <div class="col-sm-6 col-lg-4">
-                            <div class="card project-card h-100">
-                                <img
-                                    src="school.png"
-                                    class="card-img-top"
-                                    alt="Student Enquiry System" />
+                            <div class="card project-card">
+                                <img src="school.png" class="card-img-top" alt="Student Enquiry System" />
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">Student
-                                        Enquiry Platform</h5>
+                                    <h5 class="card-title fw-bold">Student Enquiry Platform</h5>
                                     <p class="card-text small">
-                                        A platform where students can send and
-                                        track enquiries with
+                                        A platform where students can send and track enquiries with
                                         professors in real-time.
                                     </p>
                                     <div class="mt-auto d-flex gap-2">
-                                        <a class="btn btn-sm btn-primary"
-                                            href="https://student-enquiry-system.vercel.app/">Live
-                                            Demo</a>
-                                        <a
-                                            class="btn btn-sm btn-outline-secondary"
-                                            href="https://github.com/nderugathoni26/student-enquiry-system">Code</a>
+                                        <a class="btn btn-sm btn-primary" href="https://student-enquiry-system.vercel.app/">Live Demo</a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="https://github.com/nderugathoni26/student-enquiry-system">Code</a>
                                     </div>
                                 </div>
-                                <div class="card-footer small">Tech: PHP, MySQL,
-                                    HTML/CSS</div>
+                                <div class="card-footer small">Tech: PHP, MySQL, HTML/CSS</div>
                             </div>
                         </div>
 
-                        <!-- Student Enquiry Platform -->
-
-                        <!-- Hospital Management System -->
                         <div class="col-sm-6 col-lg-4">
-                            <div class="card project-card h-100">
-                                <img
-                                    src="hsm.png"
-                                    class="card-img-top"
-                                    alt="Hospital Management System" />
+                            <div class="card project-card">
+                                <img src="hsm.png" class="card-img-top" alt="Hospital Management System" />
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">Hospital
-                                        Management System</h5>
+                                    <h5 class="card-title fw-bold">Hospital Management System</h5>
                                     <p class="card-text small">
-                                        A hospital platform allowing patients to
-                                        book and manage appointments online and
-                                        enabling admins to handle records
-                                        efficiently.
+                                        A hospital platform allowing patients to book and manage appointments online and
+                                        enabling admins to handle records efficiently.
                                     </p>
                                     <div class="mt-auto d-flex gap-2">
-                                        <a class="btn btn-sm btn-primary"
-                                            href="https://healthly-flow.vercel.app/"
-                                            >Live Demo</a>
-                                        <a
-                                            class="btn btn-sm btn-outline-secondary"
-                                            href="https://github.com/gayhonipeter26/healthly-flow"
-                                            >Code</a>
+                                        <a class="btn btn-sm btn-primary" href="https://healthly-flow.vercel.app/">Live Demo</a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="https://github.com/gayhonipeter26/healthly-flow">Code</a>
                                     </div>
                                 </div>
-                                <div class="card-footer small">Tech: Laravel,
-                                    Vue.js, MySQL</div>
+                                <div class="card-footer small">Tech: Laravel, Vue.js, MySQL</div>
                             </div>
                         </div>
 
-                        <!-- E-Commerce Platform -->
                         <div class="col-sm-6 col-lg-4">
-                            <div class="card project-card h-100">
-                                <img
-                                    src="ecom.png"
-                                    class="card-img-top"
-                                    alt="E-Commerce Platform" />
+                            <div class="card project-card">
+                                <img src="ecom.png" class="card-img-top" alt="E-Commerce Platform" />
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">E-Commerce
-                                        Platform</h5>
+                                    <h5 class="card-title fw-bold">E-Commerce Platform</h5>
                                     <p class="card-text small">
-                                        A multi-vendor e-commerce website
-                                        enabling sellers to manage stores, track
-                                        inventory, and buyers to shop
-                                        seamlessly.
+                                        A multi-vendor e-commerce website enabling sellers to manage stores, track
+                                        inventory, and buyers to shop seamlessly.
                                     </p>
                                     <div class="mt-auto d-flex gap-2">
-                                        <a class="btn btn-sm btn-primary"
-                                            href="https://commercial-five-sigma.vercel.app/"
-                                            >Live Demo</a>
-                                        <a
-                                            class="btn btn-sm btn-outline-secondary"
-                                            href="https://github.com/gayhonipeter26/Commercial"
-                                            >Code</a>
+                                        <a class="btn btn-sm btn-primary" href="https://commercial-five-sigma.vercel.app/">Live Demo</a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="https://github.com/gayhonipeter26/Commercial">Code</a>
                                     </div>
                                 </div>
-                                <div class="card-footer small">Tech: Laravel,
-                                    React, MySQL</div>
+                                <div class="card-footer small">Tech: Laravel, React, MySQL</div>
                             </div>
                         </div>
 
                         <div class="col-sm-6 col-lg-4">
-                            <div class="card project-card h-100">
-                                <img
-                                    src="Business.png"
-                                    class="card-img-top"
-                                    alt="Canteen Preorder System" />
+                            <div class="card project-card">
+                                <img src="Business.png" class="card-img-top" alt="Business Portfolio Website" />
                                 <div class="card-body d-flex flex-column">
-                                    <h5 class="card-title fw-bold">Business
-                                        Portfolio Website</h5>
+                                    <h5 class="card-title fw-bold">Business Portfolio Website</h5>
                                     <p class="card-text small">
-                                        A professional portfolio website
-                                        showcasing my software
-                                        consultancy and services with responsive
-                                        design
+                                        A professional portfolio website showcasing my software
+                                        consultancy and services with responsive design
                                         and live project previews.
                                     </p>
                                     <div class="mt-auto d-flex gap-2">
-                                        <a
-                                            class="btn btn-sm btn-primary"
-                                            href="https://nderu-ke.vercel.app/">Live
-                                            Demo</a>
-                                        <a
-                                            class="btn btn-sm btn-outline-secondary"
-                                            href="https://github.com/gayhonipeter26/Nderu-ke">Code</a>
+                                        <a class="btn btn-sm btn-primary" href="https://nderu-ke.vercel.app/">Live Demo</a>
+                                        <a class="btn btn-sm btn-outline-secondary" href="https://github.com/gayhonipeter26/Nderu-ke">Code</a>
                                     </div>
                                 </div>
-                                <div class="card-footer small">Tech: Laravel,
-                                    Vue.js</div>
+                                <div class="card-footer small">Tech: Laravel, Vue.js</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SKILLS -->
+                <section id="skills" class="mb-5">
+                    <div class="section-header">
+                        <h2>Skills & Technologies</h2>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-code-slash"></i> Backend Development</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="PHP" data-info="Server-side scripting language. I use PHP to build dynamic web applications with robust backend logic.">
+                                        <i class="bi bi-filetype-php"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Laravel" data-info="Modern PHP framework. I leverage Laravel for building scalable, secure web applications with elegant syntax.">
+                                        <i class="bi bi-box-seam"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="MySQL" data-info="Relational database management. I design and optimize MySQL databases for efficient data storage and retrieval.">
+                                        <i class="bi bi-database"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="PostgreSQL" data-info="Advanced open-source database. I use PostgreSQL for complex queries and data integrity in enterprise applications.">
+                                        <i class="bi bi-server"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="RESTful APIs" data-info="API architecture style. I design and develop RESTful APIs for seamless communication between systems.">
+                                        <i class="bi bi-cloud-arrow-up"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-palette"></i> Frontend Development</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="JavaScript" data-info="Core programming language for web. I create interactive, dynamic user experiences with modern JavaScript.">
+                                        <i class="bi bi-filetype-js"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Vue.js" data-info="Progressive JavaScript framework. I build reactive, component-based UIs with Vue's intuitive architecture.">
+                                        <i class="bi bi-file-earmark-code"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="React" data-info="Popular UI library. I develop fast, scalable single-page applications using React's component ecosystem.">
+                                        <i class="bi bi-code-square"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="HTML5" data-info="Semantic markup language. I structure web content with modern HTML5 standards for accessibility and SEO.">
+                                        <i class="bi bi-filetype-html"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="CSS3" data-info="Styling and animations. I craft beautiful, responsive designs with advanced CSS3 features and animations.">
+                                        <i class="bi bi-filetype-css"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Bootstrap" data-info="CSS framework. I rapidly prototype and build responsive websites using Bootstrap's component library.">
+                                        <i class="bi bi-bootstrap"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Tailwind CSS" data-info="Utility-first CSS framework. I create custom designs efficiently with Tailwind's utility classes.">
+                                        <i class="bi bi-wind"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-tools"></i> Tools & Platforms</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="Git" data-info="Version control system. I manage code versions and collaborate effectively using Git workflows.">
+                                        <i class="bi bi-git"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="GitHub" data-info="Code hosting platform. I use GitHub for repository management, collaboration, and CI/CD pipelines.">
+                                        <i class="bi bi-github"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="VS Code" data-info="Code editor. My primary IDE for development with extensive extensions for productivity.">
+                                        <i class="bi bi-code-slash"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Postman" data-info="API testing tool. I test and document APIs efficiently using Postman's comprehensive features.">
+                                        <i class="bi bi-send"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Vercel" data-info="Deployment platform. I deploy and host modern web applications with automatic CI/CD on Vercel.">
+                                        <i class="bi bi-rocket-takeoff"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Docker" data-info="Containerization platform. I create consistent development environments using Docker containers.">
+                                        <i class="bi bi-box"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-diagram-3"></i> Specializations</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="Full Stack Development" data-info="End-to-end development. I build complete applications from database to user interface with seamless integration.">
+                                        <i class="bi bi-layers"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="E-Commerce Solutions" data-info="Online store platforms. I develop multi-vendor marketplaces with payment integration and inventory management.">
+                                        <i class="bi bi-cart4"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="POS Systems" data-info="Point of sale software. I create retail management systems with sales tracking and reporting features.">
+                                        <i class="bi bi-calculator"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="CMS Development" data-info="Content management systems. I build custom CMS solutions for easy content updates and management.">
+                                        <i class="bi bi-file-earmark-text"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-camera"></i> Creative Skills</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="Photography" data-info="Professional photography. I capture compelling visual stories that communicate ideas and emotions effectively.">
+                                        <i class="bi bi-camera-fill"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Photo Editing" data-info="Image enhancement. I edit and retouch photos using professional tools to achieve stunning results.">
+                                        <i class="bi bi-image"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Visual Storytelling" data-info="Narrative through visuals. I create cohesive visual narratives that engage and inspire audiences.">
+                                        <i class="bi bi-eye"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="UI/UX Design" data-info="User interface design. I design intuitive, beautiful interfaces focused on user experience and accessibility.">
+                                        <i class="bi bi-brush"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="skill-category">
+                                <h4><i class="bi bi-lightbulb"></i> Soft Skills</h4>
+                                <div class="skills-list">
+                                    <span class="skill-badge" data-skill="Problem Solving" data-info="Analytical thinking. I break down complex problems into manageable solutions with creative approaches.">
+                                        <i class="bi bi-puzzle"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Team Collaboration" data-info="Working with others. I collaborate effectively in teams, sharing knowledge and supporting collective success.">
+                                        <i class="bi bi-people"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Project Management" data-info="Organizing tasks. I manage projects efficiently, meeting deadlines while maintaining quality standards.">
+                                        <i class="bi bi-kanban"></i>
+                                    </span>
+                                    <span class="skill-badge" data-skill="Communication" data-info="Clear expression. I communicate technical concepts clearly to both technical and non-technical audiences.">
+                                        <i class="bi bi-chat-dots"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
                 <!-- ABOUT -->
-                <section id="about" class="mb-5">
+                <section id="about-old" class="mb-5 d-none">
+                    <div class="section-header">
+                        <h2>About Me</h2>
+                    </div>
                     <div class="row g-4 align-items-center">
                         <div class="col-lg-8">
-                            <h3 class="fw-bold mb-3">About Me</h3>
                             <p>
-                                I'm a software engineer passionate about
-                                creating impactful
-                                systems and user experiences. I specialize in
-                                building reliable,
-                                efficient, and scalable applications for
-                                businesses and
+                                I'm a software engineer passionate about creating impactful
+                                systems and user experiences. I specialize in building reliable,
+                                efficient, and scalable applications for businesses and
                                 institutions.
                             </p>
-                            <ul>
-                                <li>
-                                    Skills: PHP, Laravel, MySQL, JavaScript,
-                                    Vue, React, Bootstrap
-                                </li>
-                                <li>
-                                    Also a professional photographer focused on
-                                    visual
-                                    storytelling.
-                                </li>
-                            </ul>
+                            <p>
+                                With expertise spanning both backend and frontend technologies, I bring ideas to life through clean code and thoughtful design. Beyond software development, I'm also a professional photographer focused on visual storytelling, which enhances my approach to creating visually engaging user interfaces.
+                            </p>
+                            <p>
+                                I'm committed to continuous learning and staying current with emerging technologies to deliver cutting-edge solutions that drive business growth and user satisfaction.
+                            </p>
                         </div>
                         <div class="col-lg-4">
                             <div class="p-3 border rounded-3 shadow-sm">
                                 <strong>Quick Info</strong>
                                 <p class="mb-1 small">
-                                    Email:
-                                    <a
-                                        href="mailto:nderugathoni26@gmail.com">nderugathoni26@gmail.com</a>
+                                    Email: <a href="mailto:nderugathoni26@gmail.com">nderugathoni26@gmail.com</a>
                                 </p>
-                                <p class="mb-0 small">Location: Nairobi,
-                                    Kenya</p>
+                                <p class="mb-1 small">Location: Nairobi, Kenya</p>
+                                <p class="mb-0 small">Available for: Freelance & Full-time</p>
                             </div>
                         </div>
                     </div>
@@ -603,22 +1055,15 @@
                     <div class="container">
                         <h2 class="fw-bold mb-3">Let's Connect</h2>
                         <p class="mb-4">
-                            Follow or reach out through my social platforms
-                            below.
+                            Follow or reach out through my social platforms below.
                         </p>
                         <div class="social-icons">
-                            <a href="https://github.com/gayhonipeter26/"
-                                title="GitHub"><i class="bi bi-github"></i></a>
-                            <a
-                                href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
-                                title="WhatsApp">
+                            <a href="https://github.com/gayhonipeter26/" title="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" title="WhatsApp">
                                 <i class="bi bi-whatsapp"></i>
                             </a>
-
-                            <a href="#" title="Facebook"><i
-                                    class="bi bi-facebook"></i></a>
-                            <a href="#" title="LinkedIn"><i
-                                    class="bi bi-linkedin"></i></a>
+                            <a href="#" title="Facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         </div>
                     </div>
                 </section>
@@ -627,26 +1072,78 @@
 
         <!-- FOOTER -->
         <footer>
-            <div
-                class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <div>© <span id="year"></span> Nderu Gathoni — All Rights
-                    Reserved</div>
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div>© <span id="year"></span> Nderu Gathoni — All Rights Reserved</div>
                 <div class="social-icons mt-3 mt-md-0">
-                    <a href="https://github.com/gayhonipeter26"
-                        title="GitHub"><i class="bi bi-github"></i></a>
-                    <a
-                        href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!"
-                        title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                    <a href="#" title="LinkedIn"><i
-                            class="bi bi-linkedin"></i></a>
+                    <a href="https://github.com/gayhonipeter26" title="GitHub"><i class="bi bi-github"></i></a>
+                    <a href="https://wa.me/254716140476?text=Hello%20Nderu%2C%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20connect!" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    <a href="#" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
                 </div>
             </div>
         </footer>
 
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Skill Modal -->
+        <div id="skillModal" class="skill-modal">
+            <div class="skill-modal-content">
+                <div class="skill-modal-close" onclick="closeSkillModal()">
+                    <i class="bi bi-x"></i>
+                </div>
+                <div class="skill-modal-header">
+                    <div class="skill-modal-icon" id="modalIcon">
+                        <i class="bi bi-code"></i>
+                    </div>
+                    <div class="skill-modal-title">
+                        <h3 id="modalTitle">Skill Name</h3>
+                    </div>
+                </div>
+                <div class="skill-modal-body">
+                    <p id="modalInfo">Skill information will appear here.</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+
+            // Skill Modal Functionality
+            const skillBadges = document.querySelectorAll('.skill-badge');
+            const skillModal = document.getElementById('skillModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalInfo = document.getElementById('modalInfo');
+            const modalIcon = document.getElementById('modalIcon');
+
+            skillBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    const skillName = this.getAttribute('data-skill');
+                    const skillInfo = this.getAttribute('data-info');
+                    const iconHtml = this.querySelector('i').outerHTML;
+                    
+                    modalTitle.textContent = skillName;
+                    modalInfo.textContent = skillInfo;
+                    modalIcon.innerHTML = iconHtml;
+                    
+                    skillModal.classList.add('active');
+                });
+            });
+
+            function closeSkillModal() {
+                skillModal.classList.remove('active');
+            }
+
+            // Close modal when clicking outside
+            skillModal.addEventListener('click', function(e) {
+                if (e.target === skillModal) {
+                    closeSkillModal();
+                }
+            });
+
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && skillModal.classList.contains('active')) {
+                    closeSkillModal();
+                }
+            });
+        </script>
     </body>
 </html>
